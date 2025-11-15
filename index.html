@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiv Computers And Services | Computer Repair & Services</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #475569;
+            overflow-x: hidden;
+        }
+
+        /* Gujarati text styling */
+        .lang-content.gu {
+            font-family: 'Noto Sans Gujarati', 'Inter', sans-serif;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: #ffffff;
+            color: #1e293b;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(100, 116, 139, 0.08);
+            border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #3b82f6;
+        }
+
+        .hero-logo {
+            width: 300px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .language-toggle {
+            background: #fff;
+            border: 2px solid #94a3b8;
+            color: #475569;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .language-toggle:hover {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        .lang-content.active-inline {
+            display: inline;
+        }
+
+        /* Default to Gujarati */
+        .lang-content.gu {
+            display: block;
+        }
+
+        .lang-content.gu.active-inline {
+            display: inline;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            color: #1e293b;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: #475569;
+            font-weight: 300;
+        }
+
+        .experience-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid #3b82f6;
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: #3b82f6;
+            font-size: 1rem;
+            width: fit-content;
+            margin: 0 auto 1.5rem;
+        }
+
+        .experience-badge svg {
+            width: 24px;
+            height: 24px;
+            stroke: #3b82f6;
+            fill: none;
+        }
+
+        .cta-button {
+            background: #3b82f6;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .cta-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Services Section */
+        .services {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e293b;
+            font-weight: 700;
+            letter-spacing: -1px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-image {
+            transform: scale(1.05);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+        }
+
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .service-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: #3b82f6;
+            fill: none;
+            stroke-width: 2.5;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+            line-height: 1.4;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .service-card p {
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin: 0;
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about {
+            background: #f7fafc;
+            padding: 80px 2rem;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Contact Section */
+        .contact {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: #2d3748;
+            font-weight: 500;
+        }
+
+        .contact-item-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: #3b82f6;
+            fill: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: #f1f5f9;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .powered-by {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .mystiq-link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .mystiq-link:hover {
+            color: #60a5fa;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 0;
+            }
+
+            nav {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .language-toggle {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                min-height: 100vh;
+                padding: 1.5rem;
+            }
+
+            .hero-logo {
+                width: 120px;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                line-height: 1.5;
+                margin-bottom: 1.5rem;
+            }
+
+            .experience-badge {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .experience-badge svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+
+            .services {
+                padding: 0 1.5rem;
+                margin: 60px auto;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+                margin-bottom: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .service-image {
+                height: 180px;
+            }
+
+            .service-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .service-icon svg {
+                width: 35px;
+                height: 35px;
+            }
+
+            .service-card h3 {
+                font-size: 1.25rem;
+            }
+
+            .service-card p {
+                font-size: 0.9rem;
+            }
+
+            .about {
+                padding: 60px 1.5rem;
+            }
+
+            .about-content h2 {
+                font-size: 1.75rem;
+            }
+
+            .about-content p {
+                font-size: 1rem;
+            }
+
+            .contact {
+                padding: 0 1.5rem;
+                margin: 60px auto;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: flex-start;
+            }
+
+            .contact-item {
+                font-size: 1rem;
+            }
+
+            #govt-services {
+                padding: 60px 1.5rem !important;
+            }
+
+            footer {
+                padding: 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Shiv Computers And Services</div>
+            <ul class="nav-links">
+                <li><a href="#home"><span class="lang-content en">Home</span><span class="lang-content gu active-inline">હોમ</span></a></li>
+                <li><a href="#services"><span class="lang-content en">Services</span><span class="lang-content gu active-inline">સેવાઓ</span></a></li>
+                <li><a href="#govt-services"><span class="lang-content en">Govt Services</span><span class="lang-content gu active-inline">સરકારી સેવાઓ</span></a></li>
+                <li><a href="#about"><span class="lang-content en">About</span><span class="lang-content gu active-inline">વિશે</span></a></li>
+                <li><a href="#contact"><span class="lang-content en">Contact</span><span class="lang-content gu active-inline">સંપર્ક</span></a></li>
+            </ul>
+            <button class="language-toggle" onclick="toggleLanguage()">
+                <span class="lang-content en">ગુજરાતી</span>
+                <span class="lang-content gu active-inline">English</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- <img src="shiv-logo.png" alt="Shiv Computers Logo" class="hero-logo"> -->
+        <h1>
+            <span class="lang-content en">Your Trusted Computer Repair Experts</span>
+            <span class="lang-content gu active">તમારા વિશ્વસનીય કમ્પ્યુટર રિપેર નિષ્ણાતો</span>
+        </h1>
+        <p>
+            <span class="lang-content en">Fast, Reliable Computer Solutions & Government Services</span>
+            <span class="lang-content gu active">ઝડપી, વિશ્વસનીય કમ્પ્યુટર ઉકેલો અને સરકારી સેવાઓ</span>
+        </p>
+        <div class="experience-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                <path d="M4 22h16"></path>
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+            </svg>
+            <span class="lang-content en">15+ Years of Experience</span>
+            <span class="lang-content gu active-inline">15+ વર્ષનો અનુભવ</span>
+        </div>
+        <a href="#contact" class="cta-button">
+            <span class="lang-content en">Get in Touch</span>
+            <span class="lang-content gu active-inline">સંપર્ક કરો</span>
+        </a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title">
+            <span class="lang-content en">Our Services</span>
+            <span class="lang-content gu active">અમારી સેવાઓ</span>
+        </h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://img.freepik.com/free-photo/male-technician-examining-mother-board-with-digital-multimeter_23-2147922353.jpg?semt=ais_incoming&w=740&q=80" alt="Computer Repair" class="service-image">
+                <h3>
+                    <span class="lang-content en">Computer Repair</span>
+                    <span class="lang-content gu active">કમ્પ્યુટર રિપેર</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Expert diagnosis and repair of desktop and laptop computers. We fix hardware and software issues quickly and efficiently.</span>
+                    <span class="lang-content gu active">ડેસ્કટોપ અને લેપટોપ કમ્પ્યુટરનું નિષ્ણાત નિદાન અને સમારકામ. અમે હાર્ડવેર અને સોફ્ટવેર સમસ્યાઓને ઝડપથી અને કાર્યક્ષમ રીતે ઠીક કરીએ છીએ.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&h=400&fit=crop" alt="Hardware Upgrades" class="service-image">
+                <h3>
+                    <span class="lang-content en">Hardware Upgrades</span>
+                    <span class="lang-content gu active">હાર્ડવેર અપગ્રેડ</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Upgrade your computer's RAM, storage, graphics card, and more to boost performance and extend its lifespan.</span>
+                    <span class="lang-content gu active">તમારા કમ્પ્યુટરની કામગીરી વધારવા અને તેની આયુષ્ય લંબાવવા માટે RAM, સ્ટોરેજ, ગ્રાફિક્સ કાર્ડ અને વધુ અપગ્રેડ કરો.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://ramantivirus.com/wp-content/uploads/2023/07/computer-virus-protection-scaled.webp" alt="Virus Removal" class="service-image">
+                <h3>
+                    <span class="lang-content en">Virus Removal</span>
+                    <span class="lang-content gu active">વાયરસ નિવારણ</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Complete virus and malware removal services to keep your computer safe and running smoothly.</span>
+                    <span class="lang-content gu active">તમારા કમ્પ્યુટરને સુરક્ષિત રાખવા અને સરળતાથી ચાલુ રાખવા માટે સંપૂર્ણ વાયરસ અને માલવેર નિવારણ સેવાઓ.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=600&h=400&fit=crop" alt="Data Recovery" class="service-image">
+                <h3>
+                    <span class="lang-content en">Data Recovery</span>
+                    <span class="lang-content gu active">ડેટા રિકવરી</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Professional data recovery services to retrieve your important files from damaged or corrupted drives.</span>
+                    <span class="lang-content gu active">ક્ષતિગ્રસ્ત અથવા ભ્રષ્ટ ડ્રાઇવ્સમાંથી તમારી મહત્વપૂર્ણ ફાઇલો પુનઃપ્રાપ્ત કરવા માટે વ્યાવસાયિક ડેટા રિકવરી સેવાઓ.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://media.licdn.com/dms/image/v2/C4E12AQGWD6t-0FMUBw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1590942204521?e=2147483647&v=beta&t=ZMlC9WtDZFinER_Rjr-kOyZvoDT--FxJapUHkwCVWoI" alt="System Installation" class="service-image">
+                <h3>
+                    <span class="lang-content en">System Installation</span>
+                    <span class="lang-content gu active">સિસ્ટમ ઇન્સ્ટોલેશન</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Fresh operating system installation, software setup, and system optimization for peak performance.</span>
+                    <span class="lang-content gu active">શ્રેષ્ઠ કામગીરી માટે નવી ઓપરેટિંગ સિસ્ટમ ઇન્સ્ટોલેશન, સોફ્ટવેર સેટઅપ અને સિસ્ટમ ઑપ્ટિમાઇઝેશન.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1606904825846-647eb07f5be2?w=600&h=400&fit=crop" alt="Network Setup" class="service-image">
+                <h3>
+                    <span class="lang-content en">Network Setup</span>
+                    <span class="lang-content gu active">નેટવર્ક સેટઅપ</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Home and office network configuration, Wi-Fi setup, and troubleshooting for seamless connectivity.</span>
+                    <span class="lang-content gu active">સરળ કનેક્ટિવિટી માટે ઘર અને ઓફિસ નેટવર્ક ગોઠવણી, Wi-Fi સેટઅપ અને ટ્રબલશૂટિંગ.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Government Services Section -->
+    <section id="govt-services" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 80px 2rem;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">
+                <span class="lang-content en">Government & Online Services</span>
+                <span class="lang-content gu active">સરકારી અને ઓનલાઈન સેવાઓ</span>
+            </h2>
+            <div class="services-grid">
+            <div class="service-card">
+                <img src="https://media.istockphoto.com/id/2022650788/photo/business-performance-monitoring-and-evaluation-concept-take-an-assessment-business-man-using.jpg?s=612x612&w=0&k=20&c=Lizar52LcnWC6X4H6J2hWcuOMRBgnLhHgp1WfKr5Uq8=" alt="Online Form Filling" class="service-image">
+                <h3>
+                    <span class="lang-content en">Online Form Filling</span>
+                    <span class="lang-content gu active">ઓનલાઈન ફોર્મ ભરવું</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Expert assistance with filling government and official online forms accurately and efficiently.</span>
+                    <span class="lang-content gu active">સરકારી અને સત્તાવાર ઓનલાઈન ફોર્મ ચોક્કસ અને કાર્યક્ષમ રીતે ભરવામાં નિષ્ણાત સહાય.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://wpblogassets.paytm.com/paytmblog/uploads/2023/08/Blog_Paytm_How-To-Get-Duplicate-Aadhar-Card.jpg" alt="Aadhaar Services" class="service-image">
+                <h3>
+                    <span class="lang-content en">Aadhaar Services</span>
+                    <span class="lang-content gu active">આધાર સેવાઓ</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Aadhaar card updates, corrections, linking services, and e-Aadhaar download assistance.</span>
+                    <span class="lang-content gu active">આધાર કાર્ડ અપડેટ, સુધારા, લિંકિંગ સેવાઓ અને ઇ-આધાર ડાઉનલોડ સહાય.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://wpblogassets.paytm.com/paytmblog/uploads/2022/01/Blog_Paytm_Duplicate-Pan-card_-How-To-Apply-For-Lost-Pan-Card_.jpg" alt="PAN Card Services" class="service-image">
+                <h3>
+                    <span class="lang-content en">PAN Card Services</span>
+                    <span class="lang-content gu active">પાન કાર્ડ સેવાઓ</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">PAN card application, corrections, and reprint services with complete assistance.</span>
+                    <span class="lang-content gu active">સંપૂર્ણ સહાય સાથે પાન કાર્ડ અરજી, સુધારા અને પુનઃમુદ્રણ સેવાઓ.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://blogassets.airtel.in/wp-content/uploads/2024/06/What-Is-a-Passbook-and-How-Is-It-Used-Feature-Image.jpg" alt="Passbook & Bank Services" class="service-image">
+                <h3>
+                    <span class="lang-content en">Passbook & Bank Services</span>
+                    <span class="lang-content gu active">પાસબુક અને બેંક સેવાઓ</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Bank passbook printing, statement downloads, and online banking assistance.</span>
+                    <span class="lang-content gu active">બેંક પાસબુક પ્રિન્ટિંગ, સ્ટેટમેન્ટ ડાઉનલોડ અને ઓનલાઈન બેંકિંગ સહાય.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop" alt="Utility Bill Payments" class="service-image">
+                <h3>
+                    <span class="lang-content en">Utility Bill Payments</span>
+                    <span class="lang-content gu active">યુટિલિટી બિલ પેમેન્ટ</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Pay electricity, water, gas bills and other utility payments online quickly and securely.</span>
+                    <span class="lang-content gu active">વીજળી, પાણી, ગેસ બિલ અને અન્ય યુટિલિટી પેમેન્ટ ઝડપથી અને સુરક્ષિત રીતે ઓનલાઈન ચૂકવો.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop" alt="Other Government Services" class="service-image">
+                <h3>
+                    <span class="lang-content en">Other Government Services</span>
+                    <span class="lang-content gu active">અન્ય સરકારી સેવાઓ</span>
+                </h3>
+                <p>
+                    <span class="lang-content en">Birth/death certificates, ration card, voter ID, passport applications, and more government services.</span>
+                    <span class="lang-content gu active">જન્મ/મૃત્યુ પ્રમાણપત્ર, રેશન કાર્ડ, મતદાર આઈડી, પાસપોર્ટ અરજી અને વધુ સરકારી સેવાઓ.</span>
+                </p>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2>
+                <span class="lang-content en">About Us</span>
+                <span class="lang-content gu active">અમારા વિશે</span>
+            </h2>
+            <p>
+                <span class="lang-content en">At Shiv Computers And Services, we bring years of experience and expertise to every repair. Our dedicated team is committed to providing fast, reliable, and affordable computer solutions for homes and businesses. We pride ourselves on excellent customer service and transparent pricing.</span>
+                <span class="lang-content gu active">શિવ કમ્પ્યુટર્સ એન્ડ સર્વિસિસમાં, અમે દરેક સમારકામમાં વર્ષોનો અનુભવ અને કુશળતા લાવીએ છીએ. અમારી સમર્પિત ટીમ ઘરો અને વ્યવસાયો માટે ઝડપી, વિશ્વસનીય અને પોસાય એવા કમ્પ્યુટર ઉકેલો પ્રદાન કરવા માટે પ્રતિબદ્ધ છે. અમને ઉત્તમ ગ્રાહક સેવા અને પારદર્શક કિંમતો પર ગર્વ છે.</span>
+            </p>
+            <p>
+                <span class="lang-content en">Whether you're dealing with a hardware malfunction, software issue, or need expert advice on upgrades, we're here to help. Your satisfaction is our priority.</span>
+                <span class="lang-content gu active">તમે હાર્ડવેર ખામી, સોફ્ટવેર સમસ્યા સાથે વ્યવહાર કરી રહ્યા હો, અથવા અપગ્રેડ્સ વિશે નિષ્ણાત સલાહની જરૂર હોય, તો અમે મદદ કરવા માટે અહીં છીએ. તમારો સંતોષ અમારી પ્રાથમિકતા છે.</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">
+            <span class="lang-content en">Contact Us</span>
+            <span class="lang-content gu active">અમારો સંપર્ક કરો</span>
+        </h2>
+        <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">
+            <span class="lang-content en">Get in touch for fast and reliable computer repair services</span>
+            <span class="lang-content gu active">ઝડપી અને વિશ્વસનીય કમ્પ્યુટર રિપેર સેવાઓ માટે સંપર્ક કરો</span>
+        </p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="contact-item-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </span>
+                <span>Harish Patel</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-item-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                </span>
+                <span><a href="tel:+919638116916" style="color: inherit; text-decoration: none;">+91 96381 16916</a></span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-item-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </span>
+                <span>Barotwada Chok, Lunawada</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Shiv Computers And Services. All rights reserved.</p>
+        <p class="powered-by">Powered by <a href="https://mystiq.tech" target="_blank" class="mystiq-link">mystiq.tech</a></p>
+    </footer>
+
+    <script>
+        let currentLang = 'gu';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'gu' ? 'en' : 'gu';
+            
+            // Hide all language content
+            document.querySelectorAll('.lang-content').forEach(element => {
+                element.classList.remove('active', 'active-inline');
+            });
+            
+            // Show content for current language
+            document.querySelectorAll(`.lang-content.${currentLang}`).forEach(element => {
+                if (element.parentElement.tagName === 'SPAN' || 
+                    element.parentElement.tagName === 'A' || 
+                    element.parentElement.tagName === 'BUTTON' ||
+                    element.parentElement.classList.contains('cta-button')) {
+                    element.classList.add('active-inline');
+                } else {
+                    element.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
