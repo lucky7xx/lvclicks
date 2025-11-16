@@ -5,7 +5,7 @@ Complete documentation for the LV Clicks admin panel and portfolio management sy
 ---
 
 ## 🌟 Overview
-
+v
 The admin panel allows you to:
 - Upload and manage portfolio images across 8 categories
 - Set featured "landing page" images for each category
